@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>CryptoStego | Secure File Protection</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='animations.css') }}">
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+
+
+<!-- Navbar -->
+
+<nav class="navbar">
+
+    <div class="logo">
+         <img src="{{ url_for('static', filename='images/logo.png') }}"
+         alt="CryptoStego Logo">
+    </div>
+
+
+    <div class="nav-buttons">
+
+        <a href="{{ url_for('login') }}" class="btn secondary-btn">
+            Login
+        </a>
+
+        <a href="{{ url_for('register') }}" class="btn primary-btn">
+            Register
+        </a>
+
+    </div>
+
+</nav>
+
+
+
+<!-- Hero Section -->
+
+<!-- Hero Section -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <h1>
+            Secure File Encryption &
+            <span>Steganography</span>
+        </h1>
+
+        <p>
+            Protect your confidential files using advanced encryption
+            and hide sensitive data securely inside images.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="{{ url_for('login') }}" class="btn primary-btn">
+                Get Started
+            </a>
+
+            <a href="{{ url_for('register') }}" class="btn secondary-btn">
+                Create Account
+            </a>
+
+        </div>
+
+        <div class="security-tags">
+
+            <span>
+                🔒 Encrypt
+            </span>
+
+            <span>
+                🖼 Hide
+            </span>
+
+            <span>
+                🛡 Protect
+            </span>
+
+        </div>
+
+    </div>
+
+
+    <!-- Hero Visual -->
+
+    <div class="hero-visual">
+
+        <div class="hero-glow"></div>
+
+        <img
+            src="{{ url_for('static', filename='images/hero.jpg') }}"
+            alt="CryptoStego Secure File Protection"
+        >
+
+    </div>
+
+</section>
+
+
+
+
+
+<!-- Features Section -->
+
+
+<section class="features">
+
+
+<h2>
+    Why Choose CryptoStego?
+</h2>
+
+
+<div class="feature-container">
+
+
+
+<div class="feature-card">
+
+    <div class="icon">
+        🔒
+    </div>
+
+    <h3>
+        Military Grade Encryption
+    </h3>
+
+    <p>
+        Secure your files with strong cryptographic algorithms.
+    </p>
+
+</div>
+
+
+
+
+<div class="feature-card">
+
+    <div class="icon">
+        🖼
+    </div>
+
+    <h3>
+        Secure Image Steganography
+    </h3>
+
+    <p>
+        Hide encrypted data inside images without revealing information.
+    </p>
+
+</div>
+
+
+
+
+<div class="feature-card">
+
+    <div class="icon">
+        🛡
+    </div>
+
+    <h3>
+        Integrity Verification
+    </h3>
+
+    <p>
+        Ensure your protected files remain safe and unchanged.
+    </p>
+
+</div>
+
+
+
+
+<div class="feature-card">
+
+    <div class="icon">
+        📜
+    </div>
+
+    <h3>
+        Activity History
+    </h3>
+
+    <p>
+        Track your encryption and decryption operations.
+    </p>
+
+</div>
+
+
+
+</div>
+
+
+</section>
+
+
+
+
+<footer>
+
+    © 2026 CryptoStego | Secure Digital Protection
+
+</footer>
+
+
+
+</body>
+</html>

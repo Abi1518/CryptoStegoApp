@@ -1,0 +1,182 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Decrypt File | CryptoStego
+    </title>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='animations.css') }}">
+
+    <script
+        src="{{ url_for('static', filename='operation.js') }}"
+        defer>
+    </script>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="dashboard-nav">
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="CryptoStego Logo">
+
+    </div>
+
+
+    <a
+        href="/dashboard"
+        class="logout-btn">
+
+        Dashboard
+
+    </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     DECRYPT SECTION
+     ===================================================== -->
+
+<section class="operation-container">
+
+    <div class="operation-card">
+
+
+        <div class="operation-icon">
+            🔓
+        </div>
+
+
+        <h1>
+            Recover File
+        </h1>
+
+
+        <p>
+            Extract and decrypt your hidden file
+            from the secure steganographic image.
+        </p>
+
+
+
+        <!-- =================================================
+             FORM
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/decrypt"
+            enctype="multipart/form-data">
+
+
+            <!-- =================================================
+                 STEGO IMAGE
+                 ================================================= -->
+
+            <div class="upload-box">
+
+                <label>
+                    🖼 Upload Stego Image
+                </label>
+
+
+                <input
+                    type="file"
+                    name="stego_file"
+                    id="stegoFile"
+                    accept="image/*"
+                    required>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PASSWORD
+                 ================================================= -->
+
+            <div class="input-group">
+
+                <label>
+                    🔑 Decryption Password
+                </label>
+
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter password"
+                    required>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 BUTTON
+                 ================================================= -->
+
+            <button
+                class="decrypt-btn"
+                type="submit">
+
+                🔓 Recover File
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             SECURITY NOTE
+             ================================================= -->
+
+        <div class="security-note">
+
+            🛡 Your password is used only for
+            secure decryption.
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+</body>
+
+</html>

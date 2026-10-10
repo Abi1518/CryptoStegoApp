@@ -1,0 +1,184 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Success | CryptoStego
+    </title>
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='animations.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="dashboard-nav">
+
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for(
+                'static',
+                filename='images/logo.png'
+            ) }}"
+            alt="CryptoStego Logo">
+
+    </div>
+
+
+    <a
+        href="/dashboard"
+        class="logout-btn">
+
+        Dashboard
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     SUCCESS SECTION
+     ===================================================== -->
+
+<section class="message-container">
+
+
+    <div class="success-card">
+
+
+        <!-- =================================================
+             SUCCESS IMAGE
+             ================================================= -->
+
+        <div class="success-visual">
+
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='images/success.jpg'
+                ) }}"
+                alt="Operation Successful">
+
+        </div>
+
+
+
+        <h1>
+
+            Operation Successful
+
+        </h1>
+
+
+
+        <p>
+
+            Your file has been securely processed.
+
+        </p>
+
+
+
+        {% if filename %}
+
+
+        <p class="filename">
+
+            {{ filename }}
+
+        </p>
+
+
+        {% endif %}
+
+
+
+        <div class="success-info">
+
+            🛡 Encryption Protection Enabled
+
+            <br>
+
+            🔐 Data Integrity Verified
+
+        </div>
+
+
+
+        <!-- =================================================
+             BUTTONS
+             ================================================= -->
+
+        <div class="message-buttons">
+
+
+            {% if filename %}
+
+
+            <a
+                href="{{ url_for(
+                    'download_file',
+                    filename=filename
+                ) }}"
+                class="success-btn">
+
+                ⬇ Download
+
+            </a>
+
+
+            {% endif %}
+
+
+            <a
+                href="/encrypt"
+                class="outline-btn">
+
+                🔒 Encrypt Another
+
+            </a>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+</body>
+
+</html>

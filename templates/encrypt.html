@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Encrypt File | CryptoStego
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+         ===================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         MAIN CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+
+    <!-- =====================================================
+         ANIMATIONS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='animations.css') }}">
+
+
+    <!-- =====================================================
+         OPERATION JS
+         ===================================================== -->
+
+    <script
+        src="{{ url_for('static', filename='operation.js') }}"
+        defer>
+    </script>
+
+</head>
+
+
+<body
+    data-temp-secret="{% if temp_secret_filename %}true{% else %}false{% endif %}">
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="dashboard-nav">
+
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="CryptoStego Logo">
+
+    </div>
+
+
+    <a
+        href="/dashboard"
+        class="logout-btn">
+
+        Dashboard
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     ENCRYPT SECTION
+     ===================================================== -->
+
+<section class="operation-container">
+
+
+    <div class="operation-card">
+
+
+        <!-- =================================================
+             ICON
+             ================================================= -->
+
+        <div class="operation-icon">
+
+            🔒
+
+        </div>
+
+
+
+        <!-- =================================================
+             TITLE
+             ================================================= -->
+
+        <h1>
+
+            Encrypt File
+
+        </h1>
+
+
+        <p>
+
+            Secure your confidential file by encrypting
+            and hiding it inside an image.
+
+        </p>
+
+
+
+        <!-- =================================================
+             ENCRYPT FORM
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/encrypt"
+            enctype="multipart/form-data">
+
+
+            <!-- =================================================
+                 SECRET FILE
+                 ================================================= -->
+
+            <div class="upload-box">
+
+
+                <label>
+
+                    📄 Upload Secret File
+
+                </label>
+
+
+                <input
+                    type="file"
+                    name="secret_file"
+                    id="secretFile">
+
+
+                <!-- =================================================
+                     TEMPORARY SECRET
+                     ================================================= -->
+
+                <div
+                    id="temporarySecretInfo"
+                    class="file-selected-info{% if temp_secret_filename %} visible{% endif %}"
+                    {% if not temp_secret_filename %}
+                        style="display:none;"
+                    {% endif %}>
+
+
+                    🔐 Secret file saved:
+
+
+                    <strong
+                        id="temporarySecretName">
+
+                        {{ temp_secret_filename }}
+
+                    </strong>
+
+
+                </div>
+
+
+            </div>
+
+            <button
+            type="button"
+             id="removeSecretBtn"
+            class="outline-btn"
+            style="display:none; margin-top:10px; margin-bottom:15px;">
+                ✖ Remove Secret File
+            </button>
+
+
+
+            <!-- =================================================
+                 COVER IMAGE
+                 ================================================= -->
+
+            <div class="upload-box">
+
+
+                <label>
+
+                    🖼 Cover Image
+
+                </label>
+
+
+                {% if temp_cover_filename and not selected_cover %}
+                    <div id="temporaryCoverInfo"
+                        class="file-selected-info visible"
+                        style="display:block; margin-bottom:15px;">
+
+                    ✅ Saved device cover:
+                        <strong>{{ temp_cover_filename }}</strong>
+
+                        <div style="margin-top:10px;">
+                            <img
+                                src="{{ url_for('temporary_cover_preview') }}"
+                                alt="Saved device cover preview"
+                                style="max-width:220px; max-height:180px;
+                                object-fit:contain; border-radius:10px;">
+                        </div>
+                    </div>
+                {% endif %}
+
+                {% if selected_cover %}
+
+
+                    <!-- =============================================
+                         LIBRARY COVER
+                         ============================================= -->
+
+                    <div
+                        id="libraryCoverPreview">
+
+
+                        <p
+                            style="
+                                color:#22C55E;
+                                margin-bottom:15px;
+                            ">
+
+
+                            ✅ Selected from Cover Library:
+
+
+                            <strong>
+
+                                {{ selected_cover }}
+
+                            </strong>
+
+
+                        </p>
+
+
+                        <!-- =============================================
+                             SELECTED COVER STATE
+                             ============================================= -->
+
+                        <input
+                            type="hidden"
+                            name="cover_selected"
+                            value="{{ selected_cover }}">
+
+
+                        <!-- =============================================
+                             CHOOSE ANOTHER
+                             ============================================= -->
+
+                        <a
+                            href="/cover-library"
+                            id="coverLibraryLink"
+                            class="outline-btn"
+                            style="
+                                display:inline-block;
+                                margin-bottom:15px;
+                            ">
+
+
+                            🖼 Choose Another Cover
+
+
+                        </a>
+                            <!-- CLEAR SELECTED COVER -->
+                             <button
+                             type="button"
+                             id="clearCoverBtn"
+                             class="outline-btn"
+                             style="display:inline-block; margin:0 0 15px 10px;" >
+                             ✖ Clear Selected Cover
+                             </button>
+
+                    </div>
+
+                    <script> document.getElementById("clearCoverBtn").addEventListener("click", async function ()
+                    {
+                        if (!confirm("Are you sure you want to clear the selected cover?"))
+                        {
+                            return;
+                        }
+                        try
+                        {
+                            const response = await fetch("/clear-cover",
+                            { method: "POST",
+                            headers: { "X-Requested-With": "XMLHttpRequest"
+
+                            }
+                             });
+                             const result = await response.json();
+                             if (response.ok && result.success)
+                              {
+                                window.location.reload();
+                                }
+                                 else
+                                 {
+                                    alert(result.message || "Unable to clear the selected cover.");
+                                     }
+                                     }
+                                     catch (error) { alert("Could not connect to the server. Please try again.");
+
+                                     }
+                                     });
+                                     </script>
+                    <!-- =============================================
+                         DEVICE COVER OPTION
+                         ============================================= -->
+
+                    <p
+                        style="
+                            color:#94A3B8;
+                            margin-top:5px;
+                            margin-bottom:10px;
+                        ">
+
+
+                        Or upload your own cover image:
+
+
+                    </p>
+
+
+                    <input
+                        type="file"
+                        name="cover_image"
+                        id="coverImage"
+                        accept="image/*">
+
+                    <button
+                    type="button"
+                    id="removeDeviceCoverBtn"
+                    class="outline-btn"
+                    style="display:none; margin-top:10px; margin-bottom:15px;">
+                        ✖ Remove Device Cover
+                    </button>
+
+
+                {% else %}
+
+
+                    <!-- =============================================
+                         NO LIBRARY COVER
+                         ============================================= -->
+
+                    <p
+                        style="
+                            color:#94A3B8;
+                            margin-bottom:15px;
+                        ">
+
+
+                        Upload your own image or choose one
+                        from our library.
+
+
+                    </p>
+
+
+                    <!-- =============================================
+                         DEVICE COVER
+                         ============================================= -->
+
+                    <input
+                        type="file"
+                        name="cover_image"
+                        id="coverImage"
+                        accept="image/*">
+
+                    <button
+                    type="button"
+                    id="removeDeviceCoverBtn"
+                    class="outline-btn"
+                    style="display:none; margin-top:10px; margin-bottom:15px;">
+                    ✖ Remove Device Cover
+                    </button>
+
+                    <br>
+                    <br>
+
+
+                    <!-- =============================================
+                         COVER LIBRARY
+                         ============================================= -->
+
+                    <a
+                        href="/cover-library"
+                        id="coverLibraryLink"
+                        class="outline-btn"
+                        style="
+                            display:inline-block;
+                        ">
+
+
+                        🖼 Choose From Cover Library
+
+
+                    </a>
+
+
+                {% endif %}
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CAPACITY INDICATOR
+                 ================================================= -->
+
+
+            <div
+
+                class="capacity-panel"
+                 id="capacityPanel">
+
+
+            <!-- =============================================
+            TITLE
+            ============================================= -->
+
+                <div class="capacity-title">
+
+                🛡 Steganography Capacity
+
+                </div>
+
+
+            <!-- =============================================
+            DETAILS
+            ============================================= -->
+
+                <div class="capacity-details">
+
+
+                <!-- STATUS -->
+
+                <div class="capacity-item">
+
+                    <span>
+                    Status
+                    </span>
+
+                    <strong id="capacityStatusValue">
+                --
+                    </strong>
+
+                </div>
+
+
+                 <!-- SECRET FILE SIZE -->
+
+                <div class="capacity-item">
+
+                <span>
+                    Secret File Size
+                </span>
+
+                <strong id="secretFileSize">
+                --
+                </strong>
+
+                </div>
+
+
+                 <!-- COVER DIMENSIONS -->
+
+                <div class="capacity-item">
+
+                 <span>
+                 Cover Dimensions
+                    </span>
+
+                    <strong id="coverDimensions">
+                        --
+                    </strong>
+
+                </div>
+
+
+                <!-- AVAILABLE CAPACITY -->
+
+                <div class="capacity-item">
+
+                 <span>
+                    Available Capacity
+                </span>
+
+                <strong id="availableCapacity">
+                 --
+                 </strong>
+
+                </div>
+
+
+                <!-- ESTIMATED PAYLOAD -->
+
+                <div class="capacity-item">
+
+                <span>
+                Estimated Payload
+                </span>
+
+                <strong id="estimatedPayload">
+                --
+                </strong>
+
+                </div>
+
+
+                <!-- REQUIRED BITS -->
+
+                <div class="capacity-item">
+
+                <span>
+                Required Bits
+                </span>
+
+             <strong id="requiredBits">
+                --
+                </strong>
+
+                </div>
+
+
+                <!-- REMAINING CAPACITY -->
+
+                <div class="capacity-item">
+
+                <span>
+                Remaining Capacity
+                </span>
+
+                <strong id="remainingCapacity">
+                 --
+                </strong>
+
+                </div>
+
+
+                 <!-- CAPACITY USAGE -->
+
+                <div class="capacity-item">
+
+                 <span>
+                 Capacity Usage
+                 </span>
+
+                    <strong id="capacityPercentage">
+                    0%
+                 </strong>
+
+                    </div>
+
+                </div>
+
+
+                 <!-- =============================================
+                PROGRESS BAR
+                ============================================= -->
+
+                 <div class="capacity-bar-container">
+
+                    <div class="capacity-bar">
+
+                        <div
+                        class="capacity-progress"
+                        id="capacityProgress">
+                        </div>
+
+                    </div>
+
+                 </div>
+
+
+                <!-- =============================================
+                STATUS MESSAGE
+                    ============================================= -->
+
+                <div
+                class="capacity-status"
+                 id="capacityStatus">
+
+                    Select a secret file and cover image
+                to check capacity.
+
+                </div>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 PASSWORD
+                 ================================================= -->
+
+            <div class="input-group">
+
+
+                <label>
+
+                    🔑 Encryption Password
+
+                </label>
+
+
+                <input
+                    type="password"
+                    name="password"
+                    placeholder="Enter secure password"
+                    required>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 ENCRYPT BUTTON
+                 ================================================= -->
+
+            <button
+                class="encrypt-btn"
+                type="submit">
+
+
+                🔒 Encrypt & Hide
+
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</section>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const coverInput = document.getElementById("coverImage");
+    const removeButton = document.getElementById("removeDeviceCoverBtn");
+
+    if (!coverInput || !removeButton) return;
+
+    function updateRemoveButton() {
+        removeButton.style.display =
+            coverInput.files.length > 0 ? "inline-block" : "none";
+    }
+
+    coverInput.addEventListener("change", updateRemoveButton);
+
+    removeButton.addEventListener("click", async function () {
+        if (!confirm("Are you sure you want to remove the device cover?")) {
+            return;
+        }
+
+        coverInput.value = "";
+
+        const temporaryCoverInfo =
+            document.getElementById("temporaryCoverInfo");
+
+        if (temporaryCoverInfo) {
+            temporaryCoverInfo.style.display = "none";
+        }
+        try {
+            const response = await fetch("/clear-cover", {
+                method: "POST",
+                headers: {
+                    "X-Requested-With": "XMLHttpRequest"
+                }
+            });
+
+            const result = await response.json();
+
+            if (response.ok && result.success) {
+                window.location.reload();
+            } else {
+                alert(result.message || "Unable to remove the device cover.");
+            }
+        } catch (error) {
+            alert("Could not connect to the server. Please try again.");
+        }
+    });
+
+    updateRemoveButton();
+});
+</script>
+
+</body>
+
+</html>

@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Result | CryptoStego</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='animations.css') }}">
+
+</head>
+
+<body>
+
+<nav class="dashboard-nav">
+
+    <div class="logo">
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             alt="CryptoStego Logo">
+
+    </div>
+
+    <a href="/dashboard" class="logout-btn">
+        Dashboard
+    </a>
+
+</nav>
+
+
+<section class="message-container">
+
+    <div class="result-card">
+
+        <div class="result-icon">
+            📄
+        </div>
+
+        <h1>
+            File Successfully Recovered
+        </h1>
+
+        <p>
+            Your encrypted file has been
+            successfully extracted.
+        </p>
+
+
+        {% if filename %}
+
+        <div class="recovered-file">
+            {{ filename }}
+        </div>
+
+        {% endif %}
+
+
+        <div class="security-info">
+
+            <p>
+                🔐 Encryption Verified
+            </p>
+
+            <p>
+                🛡 Integrity Check Passed
+            </p>
+
+            <p>
+                ✅ File Recovery Completed
+            </p>
+
+        </div>
+
+
+        <div class="message-buttons">
+
+            <a href="/download/{{ filename }}"
+               class="success-btn">
+
+                ⬇ Download File
+
+            </a>
+
+            <a href="/dashboard"
+               class="outline-btn">
+
+                🏠 Dashboard
+
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+
+</html>
+```

@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Dashboard | CryptoStego</title>
+
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='animations.css') }}">
+
+</head>
+
+
+<body>
+
+
+
+<!-- Navbar -->
+
+<nav class="dashboard-nav">
+<div class="logo">
+
+    <img src="{{ url_for('static', filename='images/logo.png') }}"
+         alt="CryptoStego Logo">
+
+
+
+</div>
+
+
+
+    <a href="/logout" class="logout-btn">
+
+        Logout
+
+    </a>
+
+
+
+</nav>
+
+
+
+
+
+
+<!-- Dashboard Content -->
+
+
+<section class="dashboard-container">
+
+
+
+    <div class="welcome">
+
+
+        <h1>
+
+            Hello {{ username }} 👋
+
+        </h1>
+
+
+        <p>
+
+            Secure your confidential files with encryption
+            and steganography technology.
+
+        </p>
+
+
+    </div>
+
+
+
+
+
+
+    <!-- Action Cards -->
+
+
+    <div class="dashboard-grid">
+
+
+
+
+
+        <a href="/encrypt" class="dashboard-card">
+
+
+            <div class="dashboard-icon">
+
+                🔒
+
+            </div>
+
+
+            <h2>
+
+                Encrypt File
+
+            </h2>
+
+
+            <p>
+
+                Encrypt your file and hide it securely
+                inside an image.
+
+            </p>
+
+
+
+        </a>
+
+
+
+
+
+
+
+        <a href="/decrypt" class="dashboard-card">
+
+
+            <div class="dashboard-icon">
+
+                🔓
+
+            </div>
+
+
+            <h2>
+
+                Decrypt File
+
+            </h2>
+
+
+            <p>
+
+                Recover your protected files safely.
+
+            </p>
+
+
+
+        </a>
+
+
+
+
+
+
+
+        <a href="/history" class="dashboard-card">
+
+
+            <div class="dashboard-icon">
+
+                📜
+
+            </div>
+
+
+            <h2>
+
+                History
+
+            </h2>
+
+
+            <p>
+
+                View your previous encryption
+                activities.
+
+            </p>
+
+
+
+        </a>
+
+
+
+
+
+
+
+        <a href="/logout" class="dashboard-card">
+
+
+            <div class="dashboard-icon">
+
+                🚪
+
+            </div>
+
+
+            <h2>
+
+                Logout
+
+            </h2>
+
+
+            <p>
+
+                End your secure session.
+
+            </p>
+
+
+
+        </a>
+
+
+
+
+    </div>
+
+
+
+
+
+
+<!-- Statistics -->
+
+
+<div class="statistics-section">
+
+    <div class="statistics-title">
+        <h2>📊 Activity Overview</h2>
+        <p>Your CryptoStego security activity at a glance.</p>
+    </div>
+
+    <div class="statistics-grid">
+
+        <div class="stat-card">
+            <div class="stat-icon">🔒</div>
+            <div class="stat-info">
+                <h3>{{ stats["encryption_count"] or 0 }}</h3>
+                <p>Encryption Operations</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">🔓</div>
+            <div class="stat-info">
+                <h3>{{ stats["decryption_count"] or 0 }}</h3>
+                <p>Decryption Operations</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">✅</div>
+            <div class="stat-info">
+                <h3>{{ stats["success_count"] or 0 }}</h3>
+                <p>Successful Operations</p>
+            </div>
+        </div>
+
+        <div class="stat-card">
+            <div class="stat-icon">❌</div>
+            <div class="stat-info">
+                <h3>{{ stats["failed_count"] or 0 }}</h3>
+                <p>Failed Attempts</p>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+    <!-- Security Status -->
+
+
+    <div class="security-panel">
+
+
+        <h2>
+
+            🛡️ Security Status
+
+        </h2>
+
+
+        <p>
+
+            Encryption Engine:
+            <span>
+                Active
+            </span>
+
+        </p>
+
+
+
+        <p>
+
+            Steganography Module:
+            <span>
+                Ready
+            </span>
+
+        </p>
+
+
+
+        <p>
+
+            Integrity Protection:
+            <span>
+                Enabled
+            </span>
+
+        </p>
+
+
+    </div>
+
+
+
+
+
+</section>
+
+
+
+
+
+
+</body>
+
+
+</html>

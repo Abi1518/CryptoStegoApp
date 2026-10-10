@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+
+    <title>
+        Cover Image Library | CryptoStego
+    </title>
+
+
+    <!-- =====================================================
+         GOOGLE FONT
+         ===================================================== -->
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <!-- =====================================================
+         MAIN CSS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+
+    <!-- =====================================================
+         ANIMATIONS
+         ===================================================== -->
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='animations.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="dashboard-nav">
+
+
+    <div class="logo">
+
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="CryptoStego Logo">
+
+
+    </div>
+
+
+    <a
+        href="/encrypt"
+        class="logout-btn">
+
+
+        Back to Encryption
+
+
+    </a>
+
+
+</nav>
+
+
+
+<!-- =====================================================
+     COVER LIBRARY
+     ===================================================== -->
+
+<section class="cover-library-container">
+
+
+    <!-- =================================================
+         HEADER
+         ================================================= -->
+
+    <div class="cover-library-header">
+
+
+        <h1>
+
+            🖼️ Cover Image Library
+
+        </h1>
+
+
+        <p>
+
+            Choose a cover image to hide your encrypted
+            file securely.
+
+        </p>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         COVER GRID
+         ================================================= -->
+
+    <div class="cover-grid">
+
+
+        <!-- =================================================
+             ROSE
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/select-cover"
+            class="cover-card">
+
+
+            <input
+                type="hidden"
+                name="cover"
+                value="rose.jpg">
+
+
+            <button
+                type="submit">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/covers/rose.jpg'
+                    ) }}"
+                    alt="Rose">
+
+
+                <div class="cover-info">
+
+
+                    <h3>
+
+                        Rose
+
+                    </h3>
+
+
+                    <p>
+
+                        Nature
+
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             NATURE
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/select-cover"
+            class="cover-card">
+
+
+            <input
+                type="hidden"
+                name="cover"
+                value="nature.avif">
+
+
+            <button
+                type="submit">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/covers/nature.avif'
+                    ) }}"
+                    alt="Nature">
+
+
+                <div class="cover-info">
+
+
+                    <h3>
+
+                        Nature
+
+                    </h3>
+
+
+                    <p>
+
+                        Landscape
+
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             OCEAN
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/select-cover"
+            class="cover-card">
+
+
+            <input
+                type="hidden"
+                name="cover"
+                value="ocean.jpg">
+
+
+            <button
+                type="submit">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/covers/ocean.jpg'
+                    ) }}"
+                    alt="Ocean">
+
+
+                <div class="cover-info">
+
+
+                    <h3>
+
+                        Ocean
+
+                    </h3>
+
+
+                    <p>
+
+                        Nature
+
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             FOREST
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/select-cover"
+            class="cover-card">
+
+
+            <input
+                type="hidden"
+                name="cover"
+                value="forest.jpg">
+
+
+            <button
+                type="submit">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/covers/forest.jpg'
+                    ) }}"
+                    alt="Forest">
+
+
+                <div class="cover-info">
+
+
+                    <h3>
+
+                        Forest
+
+                    </h3>
+
+
+                    <p>
+
+                        Nature
+
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             CITY
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/select-cover"
+            class="cover-card">
+
+
+            <input
+                type="hidden"
+                name="cover"
+                value="city.avif">
+
+
+            <button
+                type="submit">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/covers/city.avif'
+                    ) }}"
+                    alt="City">
+
+
+                <div class="cover-info">
+
+
+                    <h3>
+
+                        City
+
+                    </h3>
+
+
+                    <p>
+
+                        Urban
+
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+
+        <!-- =================================================
+             SPACE
+             ================================================= -->
+
+        <form
+            method="POST"
+            action="/select-cover"
+            class="cover-card">
+
+
+            <input
+                type="hidden"
+                name="cover"
+                value="space.avif">
+
+
+            <button
+                type="submit">
+
+
+                <img
+                    src="{{ url_for(
+                        'static',
+                        filename='images/covers/space.avif'
+                    ) }}"
+                    alt="Space">
+
+
+                <div class="cover-info">
+
+
+                    <h3>
+
+                        Space
+
+                    </h3>
+
+
+                    <p>
+
+                        Abstract
+
+                    </p>
+
+
+                </div>
+
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+
+    <!-- =================================================
+         FOOTER
+         ================================================= -->
+
+    <div class="cover-library-footer">
+
+
+        <a
+            href="/encrypt"
+            class="outline-btn">
+
+
+            ← Back to Encryption
+
+
+        </a>
+
+
+    </div>
+
+
+</section>
+
+
+</body>
+
+</html>

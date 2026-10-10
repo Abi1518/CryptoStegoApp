@@ -1,0 +1,606 @@
+/* =========================================================
+   CryptoStego - Global Animations
+   ========================================================= */
+
+
+/* =========================================================
+   1. PAGE ENTRANCE
+   ========================================================= */
+
+body {
+    animation: pageFadeIn 0.7s ease-out;
+}
+
+@keyframes pageFadeIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   2. NAVBAR
+   ========================================================= */
+
+.dashboard-nav {
+    animation: navSlideDown 0.6s ease-out;
+}
+
+@keyframes navSlideDown {
+
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+}
+
+
+/* =========================================================
+   3. LOGO
+   ========================================================= */
+
+.logo img {
+    transition: transform 0.3s ease,
+                filter 0.3s ease;
+}
+
+.logo img:hover {
+
+    transform: scale(1.05);
+
+    filter:
+        drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));
+
+}
+
+
+/* =========================================================
+   4. OPERATION / MESSAGE CARDS
+   ========================================================= */
+
+.operation-card,
+.success-card,
+.error-card,
+.result-card {
+
+    animation: cardEntrance 0.7s ease-out;
+
+}
+
+@keyframes cardEntrance {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(25px)
+            scale(0.97);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+
+    }
+
+}
+
+
+/* =========================================================
+   5. CARD HOVER
+   ========================================================= */
+
+.operation-card,
+.success-card,
+.error-card,
+.result-card {
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+.operation-card:hover,
+.success-card:hover,
+.result-card:hover {
+
+    transform: translateY(-4px);
+
+}
+
+
+/* =========================================================
+   6. DASHBOARD CARDS
+   ========================================================= */
+
+.dashboard-card {
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+
+}
+
+.dashboard-card:hover {
+
+    transform: translateY(-7px);
+
+    box-shadow:
+        0 10px 30px rgba(6, 182, 212, 0.15);
+
+}
+
+
+/* =========================================================
+   7. BUTTON ANIMATION
+   ========================================================= */
+
+button,
+.encrypt-btn,
+.decrypt-btn,
+.success-btn,
+.outline-btn,
+.logout-btn {
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+}
+
+button:hover,
+.encrypt-btn:hover,
+.decrypt-btn:hover,
+.success-btn:hover,
+.outline-btn:hover,
+.logout-btn:hover {
+
+    transform: translateY(-2px);
+
+}
+
+
+/* =========================================================
+   8. CYAN BUTTON GLOW
+   ========================================================= */
+
+.encrypt-btn:hover,
+.decrypt-btn:hover,
+.success-btn:hover {
+
+    box-shadow:
+        0 0 12px rgba(6, 182, 212, 0.35),
+        0 0 25px rgba(6, 182, 212, 0.15);
+
+}
+
+
+/* =========================================================
+   9. DASHBOARD LOGOUT BUTTON
+   ========================================================= */
+
+.logout-btn {
+
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.25s ease;
+
+}
+
+.logout-btn:hover {
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 0 15px rgba(6, 182, 212, 0.25);
+
+}
+
+
+/* =========================================================
+   10. UPLOAD BOX
+   ========================================================= */
+
+.upload-box {
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+.upload-box:hover {
+
+    transform: translateY(-3px);
+
+    border-color: #06B6D4;
+
+    box-shadow:
+        0 0 15px rgba(6, 182, 212, 0.12);
+
+}
+
+
+/* =========================================================
+   11. INPUT FOCUS
+   ========================================================= */
+
+input {
+
+    transition:
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
+
+}
+
+input:focus {
+
+    border-color: #06B6D4;
+
+    box-shadow:
+        0 0 0 3px rgba(6, 182, 212, 0.10);
+
+}
+
+
+/* =========================================================
+   12. HISTORY CARDS
+   ========================================================= */
+
+.history-card {
+
+    transition:
+        transform 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+
+}
+
+.history-card:hover {
+
+    transform: translateX(5px);
+
+    border-color: #06B6D4;
+
+    box-shadow:
+        0 5px 20px rgba(6, 182, 212, 0.10);
+
+}
+
+
+/* =========================================================
+   13. HISTORY ICON
+   ========================================================= */
+
+.history-icon {
+
+    transition:
+        transform 0.3s ease;
+
+}
+
+.history-card:hover .history-icon {
+
+    transform: scale(1.12);
+
+}
+
+
+/* =========================================================
+   14. SUCCESS ANIMATION
+   ========================================================= */
+
+.success-icon {
+
+    animation:
+        successPulse 2s ease-in-out infinite;
+
+}
+
+@keyframes successPulse {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.08);
+
+    }
+
+}
+
+
+/* =========================================================
+   15. ERROR ANIMATION
+   ========================================================= */
+
+.error-icon {
+
+    animation:
+        errorPulse 1.8s ease-in-out infinite;
+
+}
+
+@keyframes errorPulse {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.08);
+
+    }
+
+}
+
+
+/* =========================================================
+   16. HERO FLOATING IMAGE
+   ========================================================= */
+
+.hero-visual img {
+
+    animation:
+        heroFloat 4s ease-in-out infinite;
+
+}
+
+@keyframes heroFloat {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-8px);
+
+    }
+
+}
+
+
+/* =========================================================
+   17. EXISTING UTILITY CLASSES
+   ========================================================= */
+
+
+/* Fade In */
+
+.fade-in {
+
+    animation:
+        fadeIn 0.8s ease;
+
+}
+
+@keyframes fadeIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(30px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+
+/* Pop In */
+
+.pop-in {
+
+    animation:
+        popIn 0.6s ease;
+
+}
+
+@keyframes popIn {
+
+    from {
+
+        opacity: 0;
+
+        transform: scale(0.8);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: scale(1);
+
+    }
+
+}
+
+
+/* Floating */
+
+.float {
+
+    animation:
+        floating 3s ease-in-out infinite;
+
+}
+
+@keyframes floating {
+
+    0%,
+    100% {
+
+        transform: translateY(0);
+
+    }
+
+    50% {
+
+        transform: translateY(-10px);
+
+    }
+
+}
+
+
+/* Glow */
+
+.glow:hover {
+
+    box-shadow:
+        0 0 15px #06B6D4,
+        0 0 30px #06B6D4;
+
+}
+
+
+/* Success Bounce */
+
+.success-animation {
+
+    animation:
+        bounce 1s infinite;
+
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+
+        transform: scale(1);
+
+    }
+
+    50% {
+
+        transform: scale(1.1);
+
+    }
+
+}
+
+
+/* Error Shake */
+
+.error-animation {
+
+    animation:
+        shake 0.5s;
+
+}
+
+@keyframes shake {
+
+    0% {
+        transform: translateX(0);
+    }
+
+    25% {
+        transform: translateX(-10px);
+    }
+
+    50% {
+        transform: translateX(10px);
+    }
+
+    75% {
+        transform: translateX(-10px);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+
+}
+
+
+/* =========================================================
+   18. ACCESSIBILITY
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+
+    }
+
+}
+
+.stat-card {
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        border-color 0.3s ease;
+
+}
+
+.stat-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color: #06B6D4;
+
+    box-shadow:
+        0 8px 25px rgba(6, 182, 212, 0.12);
+
+}

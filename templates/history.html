@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        History | CryptoStego
+    </title>
+
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+
+    <link
+        rel="stylesheet"
+        href="{{ url_for('static', filename='animations.css') }}">
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     NAVBAR
+     ===================================================== -->
+
+<nav class="dashboard-nav">
+
+    <div class="logo">
+
+        <img
+            src="{{ url_for('static', filename='images/logo.png') }}"
+            alt="CryptoStego Logo">
+
+    </div>
+
+
+    <a
+        href="/dashboard"
+        class="logout-btn">
+
+        Dashboard
+
+    </a>
+
+</nav>
+
+
+
+<!-- =====================================================
+     HISTORY
+     ===================================================== -->
+
+<section class="history-container">
+
+
+    <!-- =================================================
+         HEADER
+         ================================================= -->
+
+    <div class="history-header">
+
+        <div class="history-header-text">
+
+            <h1>
+                📜 Recent Activity
+            </h1>
+
+
+            <p class="history-subtitle">
+
+                Track your encryption and
+                decryption operations.
+
+            </p>
+
+        </div>
+
+
+        <div class="history-visual">
+
+            <img
+                src="{{ url_for(
+                    'static',
+                    filename='images/history.jpg'
+                ) }}"
+                alt="Security History">
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =================================================
+         HISTORY RECORDS
+         ================================================= -->
+
+    <div class="history-list">
+
+
+        {% for item in history %}
+
+
+        <div class="history-card">
+
+
+            <div class="history-icon">
+
+                {% if item.status.lower() == "success" %}
+
+                    🟢
+
+                {% else %}
+
+                    🔴
+
+                {% endif %}
+
+            </div>
+
+
+
+            <div class="history-details">
+
+
+                <h3>
+
+                    {{ item.action }}
+
+                </h3>
+
+
+                <p>
+
+                    {{ item.filename }}
+
+                </p>
+
+
+                <span>
+
+                    {{ item.date_time }}
+
+                </span>
+
+
+            </div>
+
+
+
+            <div class="history-status">
+
+
+                {% if item.status.lower() == "success" %}
+
+                    Completed
+
+                {% else %}
+
+                    Failed
+
+                {% endif %}
+
+
+            </div>
+
+
+        </div>
+
+
+        {% endfor %}
+
+
+
+        <!-- =================================================
+             EMPTY HISTORY
+             ================================================= -->
+
+        {% if not history %}
+
+
+        <div class="empty-history">
+
+
+            <div>
+                📭
+            </div>
+
+
+            <h3>
+
+                No Activity Yet
+
+            </h3>
+
+
+            <p>
+
+                Your encryption and decryption
+                activities will appear here.
+
+            </p>
+
+
+        </div>
+
+
+        {% endif %}
+
+
+    </div>
+
+
+</section>
+
+
+</body>
+
+</html>
